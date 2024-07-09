@@ -4,7 +4,7 @@ from ROOT import TCanvas, TH1F, TH2F, TLorentzVector, TF1
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-# Extract electrons:
+# Extract photons:
 data=[]
 data=readLHEF('/Users/sophie/LDMX/software/test/m200_PF.lhe')
 photons=data.getParticlesByIDs([22])
@@ -20,13 +20,14 @@ for g in photons:
     if (g.status == 1):
         # all photons
         pt.append(g.p4.Pt())
-        # to get details of each photon:
+        # to get details of each photon (assume two per event in even structure - this should be OK)
         if nphoton%2!=0:
             print("this is the first photon in event")
             gamma1_4mom = g.p4
         if nphoton%2==0:
             print("this is the second photon in event")
             gamma2_4mom = g.p4
+            # angle between the two photons
             angle.append(gamma1_4mom.Angle(gamma2_4mom.Vect()))
 
 fig, ax = plt.subplots(1,1)
