@@ -30,13 +30,15 @@ def main(args):
             pt.append(g.p4.Pt())
             # to get details of each photon (assume two per event in even structure - this should be OK)
             if nphoton%2!=0:
-                print("this is the first photon in event")
+                print(nphoton, "this is the first photon in event")
                 gamma1_4mom = g.p4
             if nphoton%2==0:
-                print("this is the second photon in event")
+                print(nphoton,"this is the second photon in event")
                 gamma2_4mom = g.p4
                 # angle between the two photons
+                print("---------------------")
                 angle.append(gamma1_4mom.Angle(gamma2_4mom.Vect()))
+
     alp_pt = []
     for a in ALPs:
         alp_pt.append(a.p4.Pt())
@@ -80,7 +82,7 @@ def main(args):
     plt.title("Angle Between Photons "+str(args.process)+" mALP = "+str(args.mass)+"MeV/c")
     n, bins, patches = ax.hist(angle,
                                bins=100,
-                               range=(0,math.pi),
+                               range=(0,2*math.pi),
                                label="photons")
     nentries = len(angle)
     mean = np.mean(angle)

@@ -42,13 +42,16 @@ def main(args):
                 pz.append(g.pz)
                 # to get details of each photon (assume two per event in even structure - this should be OK)
                 if nphoton%2!=0:
-                    #print("this is the first photon in event")
+                    print(nphoton,"this is the first photon in event")
                     gamma1_4mom = g.p4
                 if nphoton%2==0:
-                    #print("this is the second photon in event")
+                    print(nphoton,"this is the second photon in event")
                     gamma2_4mom = g.p4
                     # angle between the two photons
-                    angle.append(gamma1_4mom.Angle(gamma2_4mom.Vect()))
+
+                print("---------------------")
+                angle.append(gamma1_4mom.Angle(gamma2_4mom.Vect()))
+
         alp_energy = []
         pts.append(pt)
         pzs.append(pz)
